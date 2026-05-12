@@ -18,13 +18,13 @@ Designed to act as a protective layer between sensitive clients (e.g. authentica
 
 | Variable           | Description                              | Default                  | Required |
 |--------------------|------------------------------------------|--------------------------|----------|
-| `PI_TARGET`        | Backend URL to forward requests to       | -                        | Yes      |
-| `PI_LISTEN`        | Local address to listen on               | `127.0.0.1:8443`        | No       |
-| `PI_TIMEOUT`       | Request timeout duration                 | `15s`                    | No       |
-| `PI_RETRIES`       | Number of retries on failure             | `2`                      | No       |
-| `PI_INSECURE`      | Skip TLS verification to backend         | `false`                  | No       |
-| `PI_CERT`          | Path to certificate file                 | `/etc/resilient-proxy/proxy.crt` | No   |
-| `PI_KEY`           | Path to private key file                 | `/etc/resilient-proxy/proxy.key` | No   |
+| `RP_TARGET`        | Backend URL to forward requests to       | -                        | Yes      |
+| `RP_LISTEN`        | Local address to listen on               | `127.0.0.1:8443`        | No       |
+| `RP_TIMEOUT`       | Request timeout duration                 | `15s`                    | No       |
+| `RP_RETRIES`       | Number of retries on failure             | `2`                      | No       |
+| `RP_INSECURE`      | Skip TLS verification to backend         | `false`                  | No       |
+| `RP_CERT`          | Path to certificate file                 | `/etc/resilient-proxy/proxy.crt` | No   |
+| `RP_KEY`           | Path to private key file                 | `/etc/resilient-proxy/proxy.key` | No   |
 
 ## Installation
 
@@ -54,10 +54,10 @@ After=network.target
 
 [Service]
 Type=simple
-Environment=PI_TARGET=https://backend.example.com
-Environment=PI_LISTEN=127.0.0.1:8443
-Environment=PI_TIMEOUT=5s
-Environment=PI_RETRIES=2
+Environment=RP_TARGET=https://backend.example.com
+Environment=RP_LISTEN=127.0.0.1:8443
+Environment=RP_TIMEOUT=5s
+Environment=RP_RETRIES=2
 ExecStart=/usr/local/bin/resilient-proxy
 Restart=always
 RestartSec=3

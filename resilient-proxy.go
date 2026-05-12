@@ -31,35 +31,35 @@ var (
 
 func main() {
 	// Required: Target
-	targetURL = os.Getenv("PI_TARGET")
+	targetURL = os.Getenv("RP_TARGET")
 	if targetURL == "" {
-		log.Println("❌ ERROR: PI_TARGET environment variable is required but not set.")
-		log.Println("   Example: PI_TARGET=https://service.example.com")
-		log.Println("   Or in systemd: Environment=PI_TARGET=https://...")
+		log.Println("❌ ERROR: RP_TARGET environment variable is required but not set.")
+		log.Println("   Example: RP_TARGET=https://service.example.com")
+		log.Println("   Or in systemd: Environment=RP_TARGET=https://...")
 		os.Exit(1) // Explicit exit
 	}
 
 	// Optional settings
-	if addr := os.Getenv("PI_LISTEN"); addr != "" {
+	if addr := os.Getenv("RP_LISTEN"); addr != "" {
 		listenAddr = addr
 	}
-	if v := os.Getenv("PI_INSECURE"); v != "" {
+	if v := os.Getenv("RP_INSECURE"); v != "" {
 		insecureTLS, _ = strconv.ParseBool(v)
 	}
-	if v := os.Getenv("PI_TIMEOUT"); v != "" {
+	if v := os.Getenv("RP_TIMEOUT"); v != "" {
 		if d, err := time.ParseDuration(v); err == nil {
 			requestTimeout = d
 		}
 	}
-	if v := os.Getenv("PI_RETRIES"); v != "" {
+	if v := os.Getenv("RP_RETRIES"); v != "" {
 		if r, err := strconv.Atoi(v); err == nil && r >= 0 {
 			maxRetries = r
 		}
 	}
-	if c := os.Getenv("PI_CERT"); c != "" {
+	if c := os.Getenv("RP_CERT"); c != "" {
 		certFile = c
 	}
-	if k := os.Getenv("PI_KEY"); k != "" {
+	if k := os.Getenv("RP_KEY"); k != "" {
 		keyFile = k
 	}
 
