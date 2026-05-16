@@ -27,6 +27,7 @@ var (
 	Version   = "dev"
 	GitCommit = "unknown"
 	BuildTime = "unknown"
+	Author    = "hamed-vojdani@hotmail.om"
 	GoVersion = runtime.Version()
 )
 
@@ -235,6 +236,7 @@ func printVersion() {
 	fmt.Printf("Version: %s\n", Version)
 	fmt.Printf("Git Commit: %s\n", GitCommit)
 	fmt.Printf("Build Time: %s\n", BuildTime)
+	fmt.Printf("Build Time: %s\n", Author)
 	fmt.Printf("Go Version: %s\n", GoVersion)
 	fmt.Printf("OS/Arch: %s/%s\n", runtime.GOOS, runtime.GOARCH)
 }
