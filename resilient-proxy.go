@@ -185,7 +185,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(resp.StatusCode)
 			io.Copy(w, resp.Body)
 
-			log.Printf("OK %s %s (%dms)", r.Method, r.URL.Path, time.Since(start).Milliseconds())
+			log.Printf(
+				"%s %s -> %d (%dms)",
+				r.Method,
+				r.URL.Path,
+				resp.StatusCode,
+				time.Since(start).Milliseconds(),
+			)
+
 			return
 		}
 
