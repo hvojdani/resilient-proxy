@@ -31,9 +31,9 @@ Designed to act as a protective layer between sensitive clients (e.g. authentica
 ### 1. Build from source
 
 ```bash
-go build -o resilient-proxy resilient-proxy.go
-cp resilient-proxy /usr/local/bin/
-chmod +x  /usr/local/bin/resilient-proxy
+make build
+sudo cp resilient-proxy /usr/local/bin/
+sudo chmod +x /usr/local/bin/resilient-proxy
 ```
 
 ### 2. Create directory for certificates
