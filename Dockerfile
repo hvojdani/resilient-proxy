@@ -3,7 +3,7 @@
 # =============================================
 
 # ------------------- Builder Stage -------------------
-FROM docker.arvancloud.ir/golang:1.24-alpine AS builder
+FROM golang:1.24-alpine AS builder
 
 WORKDIR /app
 
@@ -21,7 +21,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
 
 
 # ------------------- Final Minimal Image -------------------
-FROM repo.service.tabdl.cloud/docker.io/alpine:3.22.4
+FROM alpine:3.22.4
 
 WORKDIR /app
 
