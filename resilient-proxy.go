@@ -9,13 +9,25 @@ import (
 	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/pem"
+	"flag"
+	"fmt"
 	"io"
 	"log"
 	"math/big"
 	"net/http"
 	"os"
+	"runtime"
 	"strconv"
 	"time"
+)
+
+// These variables are set at build time using ldflags
+var (
+	AppName   = "app"
+	Version   = "dev"
+	GitCommit = "unknown"
+	BuildTime = "unknown"
+	GoVersion = runtime.Version()
 )
 
 var (
@@ -30,6 +42,16 @@ var (
 )
 
 func main() {
+
+	versionFlag := flag.Bool("version", false, "Show version information")
+	flag.Parse()
+
+	// If --version flag is used, show version and exit
+	if *versionFlag {
+		printVersion()
+		return
+	}
+
 	// Required: Target
 	targetURL = os.Getenv("RP_TARGET")
 	if targetURL == "" {
@@ -206,4 +228,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	log.Printf("❌ Proxy failed: %v", lastErr)
 	http.Error(w, "Target unavailable", http.StatusGatewayTimeout)
+}
+
+func printVersion() {
+	fmt.Printf("App Name: %s\n", AppName)
+	fmt.Printf("Version: %s\n", Version)
+	fmt.Printf("Git Commit: %s\n", GitCommit)
+	fmt.Printf("Build Time: %s\n", BuildTime)
+	fmt.Printf("Go Version: %s\n", GoVersion)
+	fmt.Printf("OS/Arch: %s/%s\n", runtime.GOOS, runtime.GOARCH)
 }
